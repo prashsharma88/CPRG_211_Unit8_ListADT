@@ -12,13 +12,13 @@ public class MyArrayList<T> implements Iterable<T> {
     public MyArrayList() {
         data = new  Object[DEFAULT_CAPACITY];
         THRESHOLD = 7;
-        System.out.println("Creating default array of: " + DEFAULT_CAPACITY);
+//        System.out.println("Creating default array of: " + DEFAULT_CAPACITY);
     }
 
     public MyArrayList(int initialSize) {
         data = new Object[initialSize];
         THRESHOLD = (int) (0.7 * initialSize);
-        System.out.println("Creating array of: " + initialSize);
+//        System.out.println("Creating array of: " + initialSize);
     }
 
 
@@ -41,7 +41,7 @@ public class MyArrayList<T> implements Iterable<T> {
      */
     public void resize() {
         int newCapacity = data.length * 2;
-        System.out.println("Resizing the internal data array from " + data.length + " to " + newCapacity);
+//        System.out.println("Resizing the internal data array from " + data.length + " to " + newCapacity);
         Object[] newData = new Object[newCapacity];
         for(int i = 0; i < data.length; i++) {
             newData[i] = data[i];
