@@ -52,7 +52,7 @@ public class MyArrayList<T> implements Iterable<T> {
 
     /***
      * Return the element at given index.
-     * @param index of element.
+     * @param index '0' base index of element.
      * @return Element at the given index
      * @exception IndexOutOfBoundsException if index is out of range of size.
      */
