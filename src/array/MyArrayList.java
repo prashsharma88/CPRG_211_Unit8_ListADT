@@ -1,19 +1,24 @@
 package array;
 
-public class MyArrayList<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class MyArrayList<T> implements Iterable<T> {
     private Object[] data;
     private int size = 0;
     private static final int DEFAULT_CAPACITY = 10;
-    private static int THRESHOLD;
+    private int THRESHOLD;
 
     public MyArrayList() {
         data = new  Object[DEFAULT_CAPACITY];
         THRESHOLD = 7;
+        System.out.println("Creating default array of: " + DEFAULT_CAPACITY);
     }
 
     public MyArrayList(int initialSize) {
         data = new Object[initialSize];
-        THRESHOLD = (int) 0.7 * initialSize;
+        THRESHOLD = (int) (0.7 * initialSize);
+        System.out.println("Creating array of: " + initialSize);
     }
 
 
@@ -42,6 +47,7 @@ public class MyArrayList<T> {
             newData[i] = data[i];
         }
         data = newData;
+        THRESHOLD = (int) (0.7 * newCapacity);
     }
 
     /***
@@ -76,5 +82,29 @@ public class MyArrayList<T> {
 
     public int size() {
         return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator();
+    }
+
+    class MyIterator implements Iterator<T> {
+
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < size;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public T next() {
+            if (!hasNext() ) {
+                throw new NoSuchElementException("No element left to return");
+            }
+            return (T) data[cursor++];
+        }
     }
 }
